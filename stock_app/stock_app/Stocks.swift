@@ -2,7 +2,7 @@
 //  Stocks.swift
 //  stock_app
 //
-//  Created by Ekaterina Tarasova on 09.03.2021.
+//  Created by Ekaterina Tarasova on 11.03.2021.
 //
 
 import Foundation
