@@ -12,7 +12,8 @@ class StocksCell: UITableViewCell {
     @IBOutlet var stoksView: UIView!
     @IBOutlet var shortLabel: UILabel!
     @IBOutlet var fullLabel: UILabel!
-    @IBOutlet var imageStock: UIImageView!
+    @IBOutlet var regularPrice: UILabel!
+    @IBOutlet var priceChange: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,8 +22,18 @@ class StocksCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
+//    static let identifier = "stocksCell"
+//    
+//    static func nib() -> UINib{
+//        return UINib(nibName: "stocksCell", bundle: nil)
+//    }
+//    
+//    func configure(with model: Stock) {
+//        self.shortLabel.text = model.symbol
+//        self.fullLabel.text = model.longName
+//        self.imageStock.image = UIImage(named: "NIKE")
+//        
+//    }
 }
