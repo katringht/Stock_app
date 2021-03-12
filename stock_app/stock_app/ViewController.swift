@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     @IBOutlet var field: UITextField!
     @IBOutlet var table: UITableView!
     var stocks = [Stock]()
+    var favorite = ["sss", "ppp"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,6 +104,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
             stocks = jsonPetitions.quotes
 //            tableView.reloadData()
         }
+    }
+    
+    @IBAction func segmented(_ sender: UISegmentedControl) {
+
     }
     
 }

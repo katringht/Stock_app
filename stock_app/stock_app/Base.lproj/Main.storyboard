@@ -25,7 +25,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zfe-sM-AxU">
-                                <rect key="frame" x="10" y="116" width="394" height="746"/>
+                                <rect key="frame" x="10" y="199" width="394" height="663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="stocksCell" rowHeight="95" id="JCC-NI-tph" customClass="StocksCell" customModule="stock_app" customModuleProvider="target">
@@ -97,7 +97,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="changePrice" destination="auu-q8-Zzk" id="ILw-kg-kAt"/>
-                                            <outlet property="favoriteBtn" destination="PIf-ih-drs" id="pIC-ps-0Bi"/>
+                                            <outlet property="favBtn" destination="PIf-ih-drs" id="KfD-9i-f6T"/>
                                             <outlet property="fullLabel" destination="vgH-OW-GLG" id="q0F-W9-XQ2"/>
                                             <outlet property="regularPrice" destination="5S5-7J-wVh" id="qxj-Ik-Ol2"/>
                                             <outlet property="shortLabel" destination="ZpM-YX-6Y3" id="7AD-Ok-pjj"/>
@@ -106,16 +106,32 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7Wi-fy-4o1">
+                                <rect key="frame" x="20" y="136" width="275" height="32"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                <segments>
+                                    <segment title="Stocks"/>
+                                    <segment title="Favorites"/>
+                                </segments>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="selectedSegmentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="segmented:" destination="BYZ-38-t0r" eventType="valueChanged" id="Kxg-Ev-Sgo"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="zfe-sM-AxU" firstAttribute="top" secondItem="NIK-D9-yON" secondAttribute="bottom" constant="10" id="1ie-oy-AVq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zfe-sM-AxU" secondAttribute="trailing" constant="10" id="4t2-cc-cJk"/>
                             <constraint firstItem="NIK-D9-yON" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="7Hq-Cv-yqp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7Wi-fy-4o1" secondAttribute="trailing" constant="119" id="AUB-0o-3W9"/>
+                            <constraint firstItem="zfe-sM-AxU" firstAttribute="top" secondItem="7Wi-fy-4o1" secondAttribute="bottom" constant="32" id="CJE-Sx-5qZ"/>
+                            <constraint firstItem="zfe-sM-AxU" firstAttribute="top" secondItem="NIK-D9-yON" secondAttribute="bottom" constant="93" id="Q2j-qy-fNN"/>
                             <constraint firstItem="NIK-D9-yON" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="Ugq-Ej-Zx6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zfe-sM-AxU" secondAttribute="bottom" id="ZZl-RZ-eS0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NIK-D9-yON" secondAttribute="trailing" constant="20" id="erz-Kc-2kP"/>
+                            <constraint firstItem="7Wi-fy-4o1" firstAttribute="leading" secondItem="NIK-D9-yON" secondAttribute="leading" id="xT9-qh-h2H"/>
                             <constraint firstItem="zfe-sM-AxU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="xdf-3y-PFR"/>
                         </constraints>
                     </view>
@@ -132,7 +148,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Qif-km-VLF">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="h82-rn-f0M" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="h82-rn-f0M" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xwn-IM-2MD">
                         <autoresizingMask key="autoresizingMask"/>
@@ -149,6 +165,9 @@
     </scenes>
     <resources>
         <image name="star.fill" catalog="system" width="128" height="116"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

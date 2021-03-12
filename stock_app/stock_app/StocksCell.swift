@@ -13,7 +13,7 @@ class StocksCell: UITableViewCell {
     @IBOutlet var shortLabel: UILabel!
     @IBOutlet var fullLabel: UILabel!
     @IBOutlet var regularPrice: UILabel!
-    @IBOutlet var favoriteBtn: UIButton!
+    @IBOutlet var favBtn: UIButton!
     @IBOutlet var changePrice: UILabel!
     
     override func awakeFromNib() {
