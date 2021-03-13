@@ -16,9 +16,12 @@ class StocksCell: UITableViewCell {
     @IBOutlet var favBtn: UIButton!
     @IBOutlet var changePrice: UILabel!
     
+    var isFavorite: Bool = false
+//    var favList: [Stock] = []
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        favBtn.tintColor = .systemGray2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -27,4 +30,16 @@ class StocksCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    
+    @IBAction func colorChangingBtn(_ sender: UIButton){
+          sender.isSelected = !sender.isSelected
+          if sender.isSelected{
+            sender.tintColor = .systemYellow
+            isFavorite = true
+             }
+          else{
+            sender.tintColor = .systemGray2
+            isFavorite = false
+           }
+       }
 }
