@@ -6,63 +6,18 @@
 //
 
 import UIKit
-//extension UISegmentedControl {
-//
-//    func removeBorder(){
-//
-//        self.tintColor = UIColor.clear
-//        self.backgroundColor = UIColor.clear
-//        self.setTitleTextAttributes( [NSAttributedString.Key.foregroundColor : UIColor.blue], for: .selected)
-//        self.setTitleTextAttributes( [NSAttributedString.Key.foregroundColor : UIColor.gray], for: .normal)
-//        if #available(iOS 13.0, *) {
-//            self.selectedSegmentTintColor = UIColor.clear
-//        }
-//
-//    }
-//
-//    func setupSegment() {
-//        self.removeBorder()
-//        let segmentUnderlineWidth: CGFloat = self.bounds.width
-//        let segmentUnderlineHeight: CGFloat = 2.0
-//        let segmentUnderlineXPosition = self.bounds.minX
-//        let segmentUnderLineYPosition = self.bounds.size.height - 1.0
-//        let segmentUnderlineFrame = CGRect(x: segmentUnderlineXPosition, y: segmentUnderLineYPosition, width: segmentUnderlineWidth, height: segmentUnderlineHeight)
-//        let segmentUnderline = UIView(frame: segmentUnderlineFrame)
-//        segmentUnderline.backgroundColor = UIColor.clear
-//
-//        self.addSubview(segmentUnderline)
-//        self.addUnderlineForSelectedSegment()
-//    }
-//
-//    func addUnderlineForSelectedSegment(){
-//
-//        let underlineWidth: CGFloat = self.bounds.size.width / CGFloat(self.numberOfSegments)
-//        let underlineHeight: CGFloat = 2.0
-//        let underlineXPosition = CGFloat(selectedSegmentIndex * Int(underlineWidth))
-//        let underLineYPosition = self.bounds.size.height - 1.0
-//        let underlineFrame = CGRect(x: underlineXPosition, y: underLineYPosition, width: underlineWidth, height: underlineHeight)
-//        let underline = UIView(frame: underlineFrame)
-//        underline.backgroundColor = UIColor.blue
-//        underline.tag = 1
-//        self.addSubview(underline)
-//
-//
-//    }
-//
-//    func changeUnderlinePosition(){
-//        guard let underline = self.viewWithTag(1) else {return}
-//        let underlineFinalXPosition = (self.bounds.width / CGFloat(self.numberOfSegments)) * CGFloat(selectedSegmentIndex)
-//        underline.frame.origin.x = underlineFinalXPosition
-//
-//    }
-//}
 class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet var segmentedController: UISegmentedControl!
+//    @IBOutlet var segmentedController: UISegmentedControl!
+    @IBOutlet var favoriteButton: UIButton!
+    @IBOutlet var stackSegmView: UIStackView!
+    @IBOutlet var stocksBtn: UIButton!
     @IBOutlet var field: UITextField!
     @IBOutlet var table: UITableView!
+    
     var stocks = [Stock]()
     var favorite = ["sss", "ppp"]
+    
     
     
     override func viewDidLoad() {
@@ -92,6 +47,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
         
         table.separatorStyle = .none
         table.showsVerticalScrollIndicator = false
+        
+        stocksBtn.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 30)
+//        updateNavButtonsDesign()
         
 //        segmentedController.addUnderlineForSelectedSegment()
         
@@ -127,15 +85,21 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     
     //table
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let selectedIndex = self.segmentedController.selectedSegmentIndex
-        switch selectedIndex {
-        case 0:
+//        let selectedIndex = self.segmentedController.selectedSegmentIndex
+//        switch selectedIndex {
+//        case 0:
+//            return stocks.count
+//        case 1:
+//
+//            return favorite.count
+//        default:
+//            return 0
+//        }
+        
+        if stocksBtn.isSelected{
             return stocks.count
-        case 1:
-            
+        } else {
             return favorite.count
-        default:
-            return 0
         }
     }
     
@@ -167,14 +131,55 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
         }
     }
     
-    @IBAction func segmented(_ sender: UISegmentedControl) {
-        self.table.reloadData()
-//        segmentedController.changeUnderlinePosition()
+    func fillNavButton(button: UIButton, choosed: Bool) {
+        if choosed {
+            button.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 30)
+            button.setTitleColor(UIColor.black, for: .normal)
+        } else {
+            button.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 25)
+            button.setTitleColor(UIColor.lightGray, for: .normal)
+        }
+    }
+
+//    func updateNavButtonsDesign() {
+//        if stocksBtn.isSelected {
+//            fillNavButton(button: stocksBtn, choosed: true)
+//            fillNavButton(button: favoriteButton, choosed: false)
+//        }
+//        else {
+//            fillNavButton(button: stocksBtn, choosed: false)
+//            fillNavButton(button: favoriteButton, choosed: true)
+//        }
+//    }
+    
+//    @IBAction func segmented(_ sender: UISegmentedControl) {
+//        self.table.reloadData()
+//    }
+    
+    @IBAction func segmentationViews(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+//        self.table.reloadData()
+        if stocksBtn.isSelected{
+            stocksBtn.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 30)
+            stocksBtn.setTitleColor(UIColor.black, for: .normal)
+            favoriteButton.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 25)
+            favoriteButton.setTitleColor(UIColor.lightGray, for: .normal)
+            favoriteButton.isSelected = false
+//            fillNavButton(button: stocksBtn, choosed: true)
+//            fillNavButton(button: favoriteButton, choosed: false)
+            
+            self.table.reloadData()
+        } else if favoriteButton.isSelected {
+//            fillNavButton(button: stocksBtn, choosed: false)
+//            fillNavButton(button: favoriteButton, choosed: true)
+            favoriteButton.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 30)
+            favoriteButton.setTitleColor(UIColor.black, for: .normal)
+            stocksBtn.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 25)
+            stocksBtn.setTitleColor(UIColor.lightGray, for: .normal)
+            stocksBtn.isSelected = false
+            self.table.reloadData()
+        }
+        
     }
     
 }
-
-//struct Stock {
-//
-//}
-

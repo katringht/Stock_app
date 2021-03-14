@@ -16,17 +16,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NIK-D9-yON">
-                                <rect key="frame" x="20" y="54" width="374" height="52"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="52" id="sZG-GA-BTz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zfe-sM-AxU">
-                                <rect key="frame" x="10" y="199" width="394" height="663"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i7x-wM-6cZ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NIK-D9-yON">
+                                        <rect key="frame" x="20" y="50" width="374" height="102"/>
+                                        <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7vA-tE-aej">
+                                        <rect key="frame" x="20" y="172" width="300" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UsR-cA-WU2">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="1Lq-dv-jVw"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="KA7-DB-5N0"/>
+                                                </constraints>
+                                                <state key="normal" title="Stocks">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="segmentationViews:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MLh-50-Lwr"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJG-4A-SLU">
+                                                <rect key="frame" x="150" y="0.0" width="150" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="8Py-7U-B4U"/>
+                                                </constraints>
+                                                <state key="normal" title="Favorites">
+                                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="segmentationViews:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jp3-dT-kJI"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="NIK-D9-yON" secondAttribute="trailing" constant="20" id="1IN-Rd-hbU"/>
+                                    <constraint firstItem="NIK-D9-yON" firstAttribute="top" secondItem="i7x-wM-6cZ" secondAttribute="top" constant="50" id="7Jq-uQ-eKu"/>
+                                    <constraint firstItem="7vA-tE-aej" firstAttribute="leading" secondItem="i7x-wM-6cZ" secondAttribute="leading" constant="20" id="MaH-wq-Ml2"/>
+                                    <constraint firstItem="7vA-tE-aej" firstAttribute="top" secondItem="NIK-D9-yON" secondAttribute="bottom" constant="20" id="Wug-7g-386"/>
+                                    <constraint firstItem="NIK-D9-yON" firstAttribute="leading" secondItem="i7x-wM-6cZ" secondAttribute="leading" constant="20" id="cAR-Tf-R1i"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zfe-sM-AxU">
+                                <rect key="frame" x="10" y="232" width="394" height="630"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="630" id="zIu-j7-AmN"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="stocksCell" rowHeight="95" id="JCC-NI-tph" customClass="StocksCell" customModule="stock_app" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="394" height="95"/>
@@ -109,36 +152,26 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7Wi-fy-4o1">
-                                <rect key="frame" x="20" y="136" width="275" height="32"/>
-                                <segments>
-                                    <segment title="Stocks"/>
-                                    <segment title="Favorites"/>
-                                </segments>
-                                <connections>
-                                    <action selector="segmented:" destination="BYZ-38-t0r" eventType="valueChanged" id="Kxg-Ev-Sgo"/>
-                                </connections>
-                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zfe-sM-AxU" secondAttribute="trailing" constant="10" id="4t2-cc-cJk"/>
-                            <constraint firstItem="NIK-D9-yON" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="7Hq-Cv-yqp"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7Wi-fy-4o1" secondAttribute="trailing" constant="119" id="AUB-0o-3W9"/>
-                            <constraint firstItem="zfe-sM-AxU" firstAttribute="top" secondItem="7Wi-fy-4o1" secondAttribute="bottom" constant="32" id="CJE-Sx-5qZ"/>
-                            <constraint firstItem="zfe-sM-AxU" firstAttribute="top" secondItem="NIK-D9-yON" secondAttribute="bottom" constant="93" id="Q2j-qy-fNN"/>
-                            <constraint firstItem="NIK-D9-yON" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="Ugq-Ej-Zx6"/>
+                            <constraint firstItem="i7x-wM-6cZ" firstAttribute="centerX" secondItem="zfe-sM-AxU" secondAttribute="centerX" id="AiC-0z-3lO"/>
+                            <constraint firstItem="zfe-sM-AxU" firstAttribute="top" secondItem="i7x-wM-6cZ" secondAttribute="bottom" constant="8" symbolic="YES" id="BkO-QD-7iQ"/>
+                            <constraint firstItem="zfe-sM-AxU" firstAttribute="top" secondItem="7vA-tE-aej" secondAttribute="bottom" constant="10" id="R3o-1O-sRI"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zfe-sM-AxU" secondAttribute="bottom" id="ZZl-RZ-eS0"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NIK-D9-yON" secondAttribute="trailing" constant="20" id="erz-Kc-2kP"/>
-                            <constraint firstItem="7Wi-fy-4o1" firstAttribute="leading" secondItem="NIK-D9-yON" secondAttribute="leading" id="xT9-qh-h2H"/>
+                            <constraint firstItem="i7x-wM-6cZ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="fYx-Jg-ylf"/>
+                            <constraint firstItem="i7x-wM-6cZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="we8-5u-GC9"/>
                             <constraint firstItem="zfe-sM-AxU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="xdf-3y-PFR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2Di-7m-nxE"/>
                     <connections>
+                        <outlet property="favoriteButton" destination="GJG-4A-SLU" id="xod-vg-9wg"/>
                         <outlet property="field" destination="NIK-D9-yON" id="lHX-r7-loy"/>
-                        <outlet property="segmentedController" destination="7Wi-fy-4o1" id="zMR-lq-qtd"/>
+                        <outlet property="stackSegmView" destination="7vA-tE-aej" id="rxq-vO-Xve"/>
+                        <outlet property="stocksBtn" destination="UsR-cA-WU2" id="6b5-ka-SLF"/>
                         <outlet property="table" destination="zfe-sM-AxU" id="Pl4-Oq-Fgg"/>
                     </connections>
                 </viewController>
