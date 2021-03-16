@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 var sourceSetted = false
-//var currentState = navigationState.stock
+var currentState = navigationState.stock
 var hideState = Bool()
 
 

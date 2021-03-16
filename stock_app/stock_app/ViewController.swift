@@ -8,8 +8,8 @@
 import UIKit
 class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
     
-//    @IBOutlet var segmentedController: UISegmentedControl!
     @IBOutlet var favoriteButton: UIButton!
+    @IBOutlet var tabBarView: UIView!
     @IBOutlet var stackSegmView: UIStackView!
     @IBOutlet var stocksBtn: UIButton!
     @IBOutlet var field: UITextField!
@@ -26,11 +26,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
         table.dataSource = self
         field.delegate = self
         
-
-//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-//        let image = UIImage(systemName: "magnifyingglass")
-//        imageView.image = image
         
+        //        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        //        let image = UIImage(systemName: "magnifyingglass")
+        //        imageView.image = image
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
         
@@ -40,18 +39,22 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
         field.layer.masksToBounds = true
         field.textColor = UIColor.black
         field.attributedPlaceholder = NSAttributedString(string: "Find company or ticket", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
-//        field.leftView = imageView
-//        field.leftViewMode = .always
-//        field.leftView?.tintColor = UIColor.black
-
+        //        field.leftView = imageView
+        //        field.leftViewMode = .always
+        //        field.leftView?.tintColor = UIColor.black
         
         table.separatorStyle = .none
         table.showsVerticalScrollIndicator = false
         
-        stocksBtn.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 30)
-//        updateNavButtonsDesign()
+        //        favoriteButton.isSelected = true
+        //        stocksBtn.isSelected = true
         
-//        segmentedController.addUnderlineForSelectedSegment()
+        stocksBtn.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 30)
+        stocksBtn.setTitleColor(UIColor.black, for: .normal)
+        stocksBtn.tintColor = .clear
+        favoriteButton.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 25)
+        favoriteButton.setTitleColor(UIColor.lightGray, for: .normal)
+        favoriteButton.tintColor = .clear
         
         let urlString: String
         urlString = "https://mboum.com/api/v1/co/collections/?list=day_gainers&start=1&apikey=demo"
@@ -85,20 +88,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     
     //table
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        let selectedIndex = self.segmentedController.selectedSegmentIndex
-//        switch selectedIndex {
-//        case 0:
-//            return stocks.count
-//        case 1:
-//
-//            return favorite.count
-//        default:
-//            return 0
-//        }
-        
         if stocksBtn.isSelected{
             return stocks.count
-        } else {
+        } else{
             return favorite.count
         }
     }
@@ -112,7 +104,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
         cell.fullLabel?.text? = stock.longName
         cell.changePrice?.text? = stock.regularMarketDayRange
         cell.regularPrice?.text? = "$\(String(stock.regularMarketPrice))"
-
+        
         cell.stoksView.layer.cornerRadius = cell.frame.height * 0.3
         cell.stoksView.backgroundColor = ((indexPath.row % 2) != 0) ? UIColor.white : UIColor.systemGray6
         return cell
@@ -124,10 +116,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     
     func parse(json: Data) {
         let decoder = JSONDecoder()
-
+        
         if let jsonPetitions = try? decoder.decode(Stocks.self, from: json) {
             stocks = jsonPetitions.quotes
-//            tableView.reloadData()
+            //            tableView.reloadData()
         }
     }
     
@@ -140,46 +132,110 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
             button.setTitleColor(UIColor.lightGray, for: .normal)
         }
     }
-
-//    func updateNavButtonsDesign() {
-//        if stocksBtn.isSelected {
-//            fillNavButton(button: stocksBtn, choosed: true)
-//            fillNavButton(button: favoriteButton, choosed: false)
-//        }
-//        else {
-//            fillNavButton(button: stocksBtn, choosed: false)
-//            fillNavButton(button: favoriteButton, choosed: true)
-//        }
-//    }
     
-//    @IBAction func segmented(_ sender: UISegmentedControl) {
-//        self.table.reloadData()
-//    }
+    @IBAction func stocksActionsBtn(_ sender: UIButton) {
+        //        sender.isSelected = true
+        stocksBtn.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 30)
+        stocksBtn.setTitleColor(UIColor.black, for: .normal)
+        favoriteButton.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 25)
+        favoriteButton.setTitleColor(UIColor.lightGray, for: .normal)
+        stocksBtn.tintColor = .clear
+        self.table.reloadData()
+        UIView.animate(withDuration: 0.1){
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @IBAction func favoriteActionsBtn(_ sender: UIButton) {
+        //        sender.isSelected = false
+        favoriteButton.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 30)
+        favoriteButton.setTitleColor(UIColor.black, for: .normal)
+        stocksBtn.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 25)
+        stocksBtn.setTitleColor(UIColor.lightGray, for: .normal)
+        favoriteButton.tintColor = .clear
+        self.table.reloadData()
+        UIView.animate(withDuration: 0.1){
+            self.view.layoutIfNeeded()
+        }
+    }
+    //
+    //    func updateNavButtonsDesign(){
+    //        if stocksBtn.isSelected {
+    //            fillNavButton(button: stocksBtn, choosed: true)
+    //            fillNavButton(button: favoriteButton, choosed: false)
+    //
+    //        }
+    //        else {
+    //            fillNavButton(button: stocksBtn, choosed: false)
+    //            fillNavButton(button: favoriteButton, choosed: true)
+    //
+    //
+    //        }
+    //    }
     
     @IBAction func segmentationViews(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-//        self.table.reloadData()
-        if stocksBtn.isSelected{
-            stocksBtn.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 30)
-            stocksBtn.setTitleColor(UIColor.black, for: .normal)
-            favoriteButton.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 25)
-            favoriteButton.setTitleColor(UIColor.lightGray, for: .normal)
-            favoriteButton.isSelected = false
-//            fillNavButton(button: stocksBtn, choosed: true)
-//            fillNavButton(button: favoriteButton, choosed: false)
-            
-            self.table.reloadData()
-        } else if favoriteButton.isSelected {
-//            fillNavButton(button: stocksBtn, choosed: false)
-//            fillNavButton(button: favoriteButton, choosed: true)
+        if favoriteButton.isSelected{
             favoriteButton.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 30)
             favoriteButton.setTitleColor(UIColor.black, for: .normal)
             stocksBtn.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 25)
             stocksBtn.setTitleColor(UIColor.lightGray, for: .normal)
-            stocksBtn.isSelected = false
+            //            fillNavButton(button: stocksBtn, choosed: false)
+            //            fillNavButton(button: favoriteButton, choosed: true)
+            favoriteButton.tintColor = .clear
+            
+            favoriteButton.isSelected = false
+            
             self.table.reloadData()
+            
+            UIView.animate(withDuration: 0.1){
+                self.view.layoutIfNeeded()
+            }
+            
+        }else if stocksBtn.isSelected {
+            stocksBtn.tintColor = .clear
+            //            fillNavButton(button: stocksBtn, choosed: true)
+            //            fillNavButton(button: favoriteButton, choosed: false)
+            stocksBtn.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 30)
+            stocksBtn.setTitleColor(UIColor.black, for: .normal)
+            favoriteButton.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 25)
+            favoriteButton.setTitleColor(UIColor.lightGray, for: .normal)
+            
+            self.table.reloadData()
+            
+            stocksBtn.isSelected = false
+            
+            UIView.animate(withDuration: 0.1){
+                self.view.layoutIfNeeded()
+            }
         }
         
     }
     
+    func changeTabBar(hidden:Bool, animated: Bool) {
+        guard let tabBar = field else {return}
+        if tabBar.isHidden == hidden{ return }
+        let frame = tabBar.frame
+        let offset = hidden ? frame.size.height : -frame.size.height
+        let duration:TimeInterval = (animated ? 0.5 : 0.0)
+        tabBar.isHidden = false
+        
+        UIView.animate(withDuration: duration, animations: {
+            tabBar.frame = frame.offsetBy(dx: 0, dy: offset)
+        }, completion: { (true) in
+            tabBar.isHidden = hidden
+        })
+        
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0{
+            changeTabBar(hidden: true, animated: true)
+        }
+        else{
+            changeTabBar(hidden: false, animated: true)
+        }
+    }
+    
 }
+

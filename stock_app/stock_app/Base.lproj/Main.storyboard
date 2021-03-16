@@ -37,7 +37,7 @@
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="segmentationViews:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MLh-50-Lwr"/>
+                                                    <action selector="segmentationViews:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Eef-vD-WXc"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJG-4A-SLU">
@@ -49,7 +49,7 @@
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="segmentationViews:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jp3-dT-kJI"/>
+                                                    <action selector="segmentationViews:" destination="BYZ-38-t0r" eventType="touchUpInside" id="atI-th-P6c"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -172,6 +172,7 @@
                         <outlet property="field" destination="NIK-D9-yON" id="lHX-r7-loy"/>
                         <outlet property="stackSegmView" destination="7vA-tE-aej" id="rxq-vO-Xve"/>
                         <outlet property="stocksBtn" destination="UsR-cA-WU2" id="6b5-ka-SLF"/>
+                        <outlet property="tabBarView" destination="i7x-wM-6cZ" id="C2Z-d4-ku6"/>
                         <outlet property="table" destination="zfe-sM-AxU" id="Pl4-Oq-Fgg"/>
                     </connections>
                 </viewController>
