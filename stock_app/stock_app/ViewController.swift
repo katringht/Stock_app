@@ -6,7 +6,8 @@
 //
 
 import UIKit
-class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UISearchControllerDelegate {
+    
     
     @IBOutlet var favoriteButton: UIButton!
     @IBOutlet var tabBarView: UIView!
@@ -14,11 +15,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     @IBOutlet var stocksBtn: UIButton!
     @IBOutlet var field: UITextField!
     @IBOutlet var table: UITableView!
+    var defaultOffSet: CGPoint?
+
     
     var stocks = [Stock]()
+    var filterPetitions = [Stock]()
     var favorite = ["sss", "ppp"]
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,28 +28,31 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
         table.dataSource = self
         field.delegate = self
         
+//        table.contentInset = UIEdgeInsetsMake(collectionView.size.height, 0, 0, 0)
         
-        //        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        //        let image = UIImage(systemName: "magnifyingglass")
-        //        imageView.image = image
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        let image = UIImage(systemName: "magnifyingglass")
+        imageView.image = image
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
+
         
-        field.layer.cornerRadius = 25
+        field.layer.cornerRadius = 15
         field.layer.borderWidth = 0.8
         field.layer.borderColor = UIColor.black.cgColor
         field.layer.masksToBounds = true
         field.textColor = UIColor.black
         field.attributedPlaceholder = NSAttributedString(string: "Find company or ticket", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
-        //        field.leftView = imageView
-        //        field.leftViewMode = .always
-        //        field.leftView?.tintColor = UIColor.black
+        field.leftView = imageView
+        field.leftViewMode = .always
+        field.leftView?.tintColor = UIColor.black
         
         table.separatorStyle = .none
         table.showsVerticalScrollIndicator = false
         
         //        favoriteButton.isSelected = true
-        //        stocksBtn.isSelected = true
+//                stocksBtn.isSelected = true
         
         stocksBtn.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 30)
         stocksBtn.setTitleColor(UIColor.black, for: .normal)
@@ -67,14 +72,13 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
         }
         
     }
+    
     //field
     func textFieldShouldReturn(_ textField: UITextField)-> Bool {
-        search()
-        
         for textField in self.view.subviews where textField is UITextField {
             textField.resignFirstResponder()
         }
-        
+
         return true
     }
     
@@ -82,8 +86,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
         view.endEditing(true)
     }
     
-    func search() {
-        
+    func search(_ keyword: String) {
+        for index in 0...stocks.count - 1{
+            if stocks[index].longName.lowercased().contains(keyword.lowercased()){
+                filterPetitions.append(stocks[index])
+            }
+        }
     }
     
     //table
@@ -133,47 +141,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
         }
     }
     
-    @IBAction func stocksActionsBtn(_ sender: UIButton) {
-        //        sender.isSelected = true
-        stocksBtn.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 30)
-        stocksBtn.setTitleColor(UIColor.black, for: .normal)
-        favoriteButton.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 25)
-        favoriteButton.setTitleColor(UIColor.lightGray, for: .normal)
-        stocksBtn.tintColor = .clear
-        self.table.reloadData()
-        UIView.animate(withDuration: 0.1){
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    @IBAction func favoriteActionsBtn(_ sender: UIButton) {
-        //        sender.isSelected = false
-        favoriteButton.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 30)
-        favoriteButton.setTitleColor(UIColor.black, for: .normal)
-        stocksBtn.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 25)
-        stocksBtn.setTitleColor(UIColor.lightGray, for: .normal)
-        favoriteButton.tintColor = .clear
-        self.table.reloadData()
-        UIView.animate(withDuration: 0.1){
-            self.view.layoutIfNeeded()
-        }
-    }
-    //
-    //    func updateNavButtonsDesign(){
-    //        if stocksBtn.isSelected {
-    //            fillNavButton(button: stocksBtn, choosed: true)
-    //            fillNavButton(button: favoriteButton, choosed: false)
-    //
-    //        }
-    //        else {
-    //            fillNavButton(button: stocksBtn, choosed: false)
-    //            fillNavButton(button: favoriteButton, choosed: true)
-    //
-    //
-    //        }
-    //    }
-    
-    @IBAction func segmentationViews(_ sender: UIButton) {
+    @IBAction func segmentedView(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         if favoriteButton.isSelected{
             favoriteButton.titleLabel?.font = UIFont(name: "Hiragino Sans W6", size: 30)
@@ -209,31 +177,35 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
                 self.view.layoutIfNeeded()
             }
         }
-        
     }
     
-    func changeTabBar(hidden:Bool, animated: Bool) {
-        guard let tabBar = field else {return}
-        if tabBar.isHidden == hidden{ return }
-        let frame = tabBar.frame
-        let offset = hidden ? frame.size.height : -frame.size.height
-        let duration:TimeInterval = (animated ? 0.5 : 0.0)
-        tabBar.isHidden = false
-        
-        UIView.animate(withDuration: duration, animations: {
-            tabBar.frame = frame.offsetBy(dx: 0, dy: offset)
-        }, completion: { (true) in
-            tabBar.isHidden = hidden
-        })
-        
-    }
+    //scroll view
     
+//    func changeTabBar(hidden:Bool, animated: Bool) {
+//        guard let tabBar = field else {return}
+//        if tabBar.isHidden == hidden{ return }
+//        let frame = tabBar.frame
+//
+//        let offset = hidden ? frame.size.height : -frame.size.height
+//        let duration:TimeInterval = (animated ? 0.5 : 0.0)
+//        tabBar.isHidden = false
+//
+//        UIView.animate(withDuration: duration, animations: {
+//            tabBar.frame = frame.offsetBy(dx: 0, dy: offset)
+//        }, completion: { (true) in
+//            tabBar.isHidden = hidden
+//        })
+//
+//    }
+
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0{
-            changeTabBar(hidden: true, animated: true)
+//            changeTabBar(hidden: true, animated: true)
+            tabBarView.isHidden = true
         }
         else{
-            changeTabBar(hidden: false, animated: true)
+//            changeTabBar(hidden: false, animated: true)
+            tabBarView.isHidden = false
         }
     }
     
