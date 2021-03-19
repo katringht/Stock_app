@@ -21,6 +21,8 @@ struct OvalTextFieldStyle: ViewModifier {
 
 struct SearchBar: View {
     @Binding var text: String
+    @Binding var index: Int
+    @State var isSearching = false
     
     var body: some View{
         
@@ -31,7 +33,25 @@ struct SearchBar: View {
                     Image(systemName: "magnifyingglass")
                     ZStack(alignment: .leading) {
                         if text.isEmpty { Text("Find stock or trend..").foregroundColor(.black) }
+
                         TextField("", text: $text)
+                            .onTapGesture(perform: {
+                                isSearching = true
+                                self.index = 2
+                            })
+                    }
+                    if isSearching{
+                        Button(action: {
+                            index = 0
+                            text = ""
+                            isSearching = false
+                            
+                        }, label: {
+                            Image(systemName: "xmark")
+                                .foregroundColor(.black)
+                        })
+                        
+                        
                     }
                 }
                 .modifier(OvalTextFieldStyle(roundedCornes: 20))

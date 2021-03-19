@@ -26,20 +26,30 @@ struct Home: View {
     @State var index = 0
     @State var text: String = ""
     @State var isHide = false
+    @State var tapTextField = false
     
     var body: some View{
         
         VStack(spacing: 0){
             if !isHide{
-                SearchBar( text: $text)
+                SearchBar( text: $text, index: $index)
             }
-            segmentedView(index: $index)
-            
             ZStack{
-                Stocks(text: $text, isHide: $isHide).opacity(self.index == 0 ? 1 : 0)
-                
-                Favorites().opacity(self.index == 1 ? 1 : 0)
+                if !tapTextField && text.isEmpty{
+                    PopularQueries().opacity(self.index == 2 ? 1 : 0)
+                }
+                if !(self.index == 2) || !text.isEmpty {
+                    VStack{
+                        segmentedView(index: $index)
+                        ZStack{
+                            Stocks(text: $text, isHide: $isHide).opacity(self.index == 0 ? 1 : 0)
+                            
+                            Favorites().opacity(self.index == 1 ? 1 : 0)
+                        }
+                    }
+                }
             }
+            
         }
         .edgesIgnoringSafeArea(.top)
     }
@@ -197,7 +207,6 @@ struct Favorites: View {
         
     }
 }
-
 
 //MARK: API
 
