@@ -9,14 +9,11 @@ import UIKit
 
 class StocksCell: UITableViewCell {
 
-    @IBOutlet var stoksView: UIView!
-    @IBOutlet var shortLabel: UILabel!
-    @IBOutlet var fullLabel: UILabel!
-    @IBOutlet var regularPrice: UILabel!
-    @IBOutlet var changePrice: UILabel!
-    
-    var isFavorite: Bool = false
-//    var favList: [Stock] = []
+    @IBOutlet var stockView: UIView!
+    @IBOutlet var stockCost: UILabel!
+    @IBOutlet var stockLabel: UILabel!
+    @IBOutlet var stockSublabel: UILabel!
+    @IBOutlet var startFavoriteButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
