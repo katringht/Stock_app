@@ -14,6 +14,8 @@ class LoginViewController: UIViewController {
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var loginButton: UIButton!
     @IBOutlet var loginLabal: UILabel!
+    @IBOutlet var stackView: UIStackView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButton.layer.cornerRadius = 10
@@ -21,13 +23,41 @@ class LoginViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
         
-        loginView.bindToKeyboard()
+        //animation when keyboard is appearing
+        loginButton.bindToKeyboard()
+        loginLabal.bindToKeyboard()
+        stackView.bindToKeyboard()
+        
+        // user is already logged in
+        if UserDefaults.standard.bool(forKey: "USERDEFAULTLOGIN") {
+            showView()
+        }
     }
+    
     @objc func hideKeyboard() {
         view.endEditing(true)
     }
     
-
+    @IBAction func loginButton(_ sender: Any) {
+        guard let email = emailTextField.text, let password = passwordTextField.text else {return}
+        
+        if email.isValidEmail && password.isValidPassword{
+            // set the default user's login
+            UserDefaults.standard.set(true, forKey: "USERDEFAULTLOGIN")
+            //navigate to screen with stocks
+            showView()
+        } else {
+            loginLabal.text = "Invalid password or email"
+            loginLabal.textColor = .red
+        }
+    }
+    
+    func showView() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "StockViewController") as! StockViewController
+        show(secondVC, sender: self)
+    }
+    
     /*
     // MARK: - Navigation
 

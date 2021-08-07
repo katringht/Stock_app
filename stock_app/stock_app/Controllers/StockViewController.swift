@@ -28,7 +28,8 @@ class StockViewController: UIViewController{
         favoriteButton.setDeselectedColor()
         
 // "https://mboum.com/api/v1/co/collections/?list=day_gainers&start=1&apikey=demo"
-
+        
+// MARK: Button actions
     }
     @objc func hideKeyboard() {
         view.endEditing(true)
@@ -46,11 +47,15 @@ class StockViewController: UIViewController{
         isFavoriteSection = true
     }
     @IBAction func accountButton(_ sender: Any) {
+        // delete our default login
+        UserDefaults.standard.set(false, forKey: "USERDEFAULTLOGIN")
+
         navigationController?.popViewController(animated: true)
+        
     }
 }
 
-// MARK: Table View
+// MARK: Table View Controller
 extension StockViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10

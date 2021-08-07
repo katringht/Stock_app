@@ -14,6 +14,7 @@
 		212DCA0F25F2745200B36705 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 212DCA0E25F2745200B36705 /* Assets.xcassets */; };
 		212DCA1225F2745200B36705 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 212DCA1025F2745200B36705 /* LaunchScreen.storyboard */; };
 		2145828425F3AC4B00C2DC2A /* StocksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2145828325F3AC4B00C2DC2A /* StocksCell.swift */; };
+		217CDBD626BEB58000D6F957 /* StringExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217CDBD526BEB58000D6F957 /* StringExtention.swift */; };
 		21C6F2BE26BD92B200E7A0EE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C6F2BD26BD92B200E7A0EE /* LoginViewController.swift */; };
 		21C6F2C126BD974800E7A0EE /* UIViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C6F2C026BD974800E7A0EE /* UIViewExtention.swift */; };
 		21C6F2C526BDAC8D00E7A0EE /* UIButtonExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C6F2C426BDAC8D00E7A0EE /* UIButtonExtention.swift */; };
@@ -48,6 +49,7 @@
 		212DCA1825F2745200B36705 /* stock_appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stock_appTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		212DCA2325F2745200B36705 /* stock_appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stock_appUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2145828325F3AC4B00C2DC2A /* StocksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksCell.swift; sourceTree = "<group>"; };
+		217CDBD526BEB58000D6F957 /* StringExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtention.swift; sourceTree = "<group>"; };
 		21C6F2BD26BD92B200E7A0EE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		21C6F2C026BD974800E7A0EE /* UIViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtention.swift; sourceTree = "<group>"; };
 		21C6F2C426BDAC8D00E7A0EE /* UIButtonExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtention.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			children = (
 				21C6F2C026BD974800E7A0EE /* UIViewExtention.swift */,
 				21C6F2C426BDAC8D00E7A0EE /* UIButtonExtention.swift */,
+				217CDBD526BEB58000D6F957 /* StringExtention.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				21C6F2C526BDAC8D00E7A0EE /* UIButtonExtention.swift in Sources */,
 				21C6F2C126BD974800E7A0EE /* UIViewExtention.swift in Sources */,
 				2145828425F3AC4B00C2DC2A /* StocksCell.swift in Sources */,
+				217CDBD626BEB58000D6F957 /* StringExtention.swift in Sources */,
 				21C6F2BE26BD92B200E7A0EE /* LoginViewController.swift in Sources */,
 				212DCA0825F2745100B36705 /* SceneDelegate.swift in Sources */,
 			);
