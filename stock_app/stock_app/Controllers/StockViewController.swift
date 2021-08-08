@@ -14,15 +14,14 @@ class StockViewController: UIViewController{
     @IBOutlet var stocksButton: UIButton!
     @IBOutlet var favoriteButton: UIButton!
     
-    var isFavoriteSection = false
-    
+    var screenEnum: ScreenCategory = .stockScreen
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        view.addGestureRecognizer(tapGesture)
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+//        view.addGestureRecognizer(tapGesture)
         
         stocksButton.setSelectedColor()
         favoriteButton.setDeselectedColor()
@@ -36,15 +35,18 @@ class StockViewController: UIViewController{
     }
     
     @IBAction func stockButton(_ sender: Any) {
+        screenEnum = .stockScreen
         stocksButton.setSelectedColor()
         favoriteButton.setDeselectedColor()
-        isFavoriteSection = false
+        tableView.reloadData()
     }
     
     @IBAction func favoriteButton(_ sender: Any) {
+        screenEnum = .favoriteScreen
         stocksButton.setDeselectedColor()
         favoriteButton.setSelectedColor()
-        isFavoriteSection = true
+        tableView.reloadData()
+        
     }
     @IBAction func accountButton(_ sender: Any) {
         // delete our default login
@@ -58,13 +60,21 @@ class StockViewController: UIViewController{
 // MARK: Table View Controller
 extension StockViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        if screenEnum == .favoriteScreen {
+            return 0
+        } else {
+            return 10
+        }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StockCell", for: indexPath) as! StocksCell
-        cell.stockView.layer.cornerRadius = cell.frame.height * 0.3
+        cell.stockView.layer.cornerRadius = cell.frame.height * 0.2
         cell.stockView.backgroundColor = ((indexPath.row % 2) != 0) ?
             UIColor.white : UIColor.systemGray6
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .none
+        cell.selectedBackgroundView = backgroundView
         return cell
     }
 }
@@ -72,5 +82,13 @@ extension StockViewController: UITableViewDataSource {
 extension StockViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "DetailStockViewController") as! DetailStockViewController
+        show(secondVC, sender: self)
     }
 }
