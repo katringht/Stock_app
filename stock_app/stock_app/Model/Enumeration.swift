@@ -11,3 +11,8 @@ enum ScreenCategory {
     case stockScreen
     case favoriteScreen
 }
+
+enum Result<T> {
+    case Success(T)
+    case Error(String)
+}

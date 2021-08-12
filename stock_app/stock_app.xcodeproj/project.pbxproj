@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		210B6B5226C11E0300F27E7B /* stock_app.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 210B6B5026C11E0300F27E7B /* stock_app.xcdatamodeld */; };
+		210B6B5526C11FAD00F27E7B /* Stocks+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B6B5326C11FAD00F27E7B /* Stocks+CoreDataClass.swift */; };
+		210B6B5626C11FAD00F27E7B /* Stocks+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B6B5426C11FAD00F27E7B /* Stocks+CoreDataProperties.swift */; };
+		210B6B5826C11FED00F27E7B /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B6B5726C11FED00F27E7B /* PersistenceService.swift */; };
+		212BC94D26C5731F007976BC /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212BC94C26C5731F007976BC /* CartViewController.swift */; };
+		212BC94F26C5771B007976BC /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212BC94E26C5771B007976BC /* Stock.swift */; };
 		212DCA0625F2745100B36705 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212DCA0525F2745100B36705 /* AppDelegate.swift */; };
 		212DCA0825F2745100B36705 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212DCA0725F2745100B36705 /* SceneDelegate.swift */; };
 		212DCA0A25F2745100B36705 /* StockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212DCA0925F2745100B36705 /* StockViewController.swift */; };
@@ -17,11 +23,9 @@
 		217CDBD626BEB58000D6F957 /* StringExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217CDBD526BEB58000D6F957 /* StringExtention.swift */; };
 		21876CA626C01F7B00C94848 /* StockCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 21876CA526C01F7B00C94848 /* StockCharts */; };
 		21876CB226C0256600C94848 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 21876CB126C0256600C94848 /* Charts */; };
-		2188F34026BFFCD800A5B24B /* Enumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2188F33F26BFFCD800A5B24B /* Enumeration.swift */; };
 		2188F34326C0134700A5B24B /* DetailStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2188F34226C0134700A5B24B /* DetailStockViewController.swift */; };
 		21C6F2BE26BD92B200E7A0EE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C6F2BD26BD92B200E7A0EE /* LoginViewController.swift */; };
 		21C6F2C126BD974800E7A0EE /* UIViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C6F2C026BD974800E7A0EE /* UIViewExtention.swift */; };
-		21C6F2C526BDAC8D00E7A0EE /* UIButtonExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C6F2C426BDAC8D00E7A0EE /* UIButtonExtention.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +59,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		210B6B5126C11E0300F27E7B /* stock_app.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = stock_app.xcdatamodel; sourceTree = "<group>"; };
+		210B6B5326C11FAD00F27E7B /* Stocks+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stocks+CoreDataClass.swift"; sourceTree = "<group>"; };
+		210B6B5426C11FAD00F27E7B /* Stocks+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stocks+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		210B6B5726C11FED00F27E7B /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		212BC94C26C5731F007976BC /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		212BC94E26C5771B007976BC /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		212DCA0225F2745100B36705 /* stock_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stock_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		212DCA0525F2745100B36705 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		212DCA0725F2745100B36705 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,11 +77,9 @@
 		212DCA2325F2745200B36705 /* stock_appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stock_appUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2145828325F3AC4B00C2DC2A /* StocksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksCell.swift; sourceTree = "<group>"; };
 		217CDBD526BEB58000D6F957 /* StringExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtention.swift; sourceTree = "<group>"; };
-		2188F33F26BFFCD800A5B24B /* Enumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumeration.swift; sourceTree = "<group>"; };
 		2188F34226C0134700A5B24B /* DetailStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStockViewController.swift; sourceTree = "<group>"; };
 		21C6F2BD26BD92B200E7A0EE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		21C6F2C026BD974800E7A0EE /* UIViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtention.swift; sourceTree = "<group>"; };
-		21C6F2C426BDAC8D00E7A0EE /* UIButtonExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtention.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +140,7 @@
 				212DCA0725F2745100B36705 /* SceneDelegate.swift */,
 				212DCA0E25F2745200B36705 /* Assets.xcassets */,
 				212DCA1325F2745200B36705 /* Info.plist */,
+				210B6B5026C11E0300F27E7B /* stock_app.xcdatamodeld */,
 			);
 			path = stock_app;
 			sourceTree = "<group>";
@@ -139,7 +148,9 @@
 		2188F33E26BFFCC000A5B24B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2188F33F26BFFCD800A5B24B /* Enumeration.swift */,
+				210B6B5326C11FAD00F27E7B /* Stocks+CoreDataClass.swift */,
+				210B6B5426C11FAD00F27E7B /* Stocks+CoreDataProperties.swift */,
+				212BC94E26C5771B007976BC /* Stock.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -147,6 +158,7 @@
 		2188F34126C00E0600A5B24B /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				210B6B5726C11FED00F27E7B /* PersistenceService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -174,6 +186,7 @@
 				212DCA0925F2745100B36705 /* StockViewController.swift */,
 				21C6F2BD26BD92B200E7A0EE /* LoginViewController.swift */,
 				2188F34226C0134700A5B24B /* DetailStockViewController.swift */,
+				212BC94C26C5731F007976BC /* CartViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -182,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				21C6F2C026BD974800E7A0EE /* UIViewExtention.swift */,
-				21C6F2C426BDAC8D00E7A0EE /* UIButtonExtention.swift */,
 				217CDBD526BEB58000D6F957 /* StringExtention.swift */,
 			);
 			path = Extentions;
@@ -330,12 +342,16 @@
 				212DCA0A25F2745100B36705 /* StockViewController.swift in Sources */,
 				212DCA0625F2745100B36705 /* AppDelegate.swift in Sources */,
 				2188F34326C0134700A5B24B /* DetailStockViewController.swift in Sources */,
-				2188F34026BFFCD800A5B24B /* Enumeration.swift in Sources */,
-				21C6F2C526BDAC8D00E7A0EE /* UIButtonExtention.swift in Sources */,
+				210B6B5626C11FAD00F27E7B /* Stocks+CoreDataProperties.swift in Sources */,
+				210B6B5526C11FAD00F27E7B /* Stocks+CoreDataClass.swift in Sources */,
+				212BC94D26C5731F007976BC /* CartViewController.swift in Sources */,
+				210B6B5826C11FED00F27E7B /* PersistenceService.swift in Sources */,
 				21C6F2C126BD974800E7A0EE /* UIViewExtention.swift in Sources */,
+				212BC94F26C5771B007976BC /* Stock.swift in Sources */,
 				2145828425F3AC4B00C2DC2A /* StocksCell.swift in Sources */,
 				217CDBD626BEB58000D6F957 /* StringExtention.swift in Sources */,
 				21C6F2BE26BD92B200E7A0EE /* LoginViewController.swift in Sources */,
+				210B6B5226C11E0300F27E7B /* stock_app.xcdatamodeld in Sources */,
 				212DCA0825F2745100B36705 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -699,6 +715,19 @@
 			productName = Charts;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		210B6B5026C11E0300F27E7B /* stock_app.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				210B6B5126C11E0300F27E7B /* stock_app.xcdatamodel */,
+			);
+			currentVersion = 210B6B5126C11E0300F27E7B /* stock_app.xcdatamodel */;
+			path = stock_app.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 212DC9FA25F2745100B36705 /* Project object */;
 }

@@ -6,75 +6,89 @@
 //
 
 import UIKit
+import CoreData
 class StockViewController: UIViewController{
     
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var accountButton: UIButton!
-    @IBOutlet var stocksButton: UIButton!
-    @IBOutlet var favoriteButton: UIButton!
+    var stocks: [Stock] = []
     
-    var screenEnum: ScreenCategory = .stockScreen
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-//        view.addGestureRecognizer(tapGesture)
-        
-        stocksButton.setSelectedColor()
-        favoriteButton.setDeselectedColor()
-        
-// "https://mboum.com/api/v1/co/collections/?list=day_gainers&start=1&apikey=demo"
-        
-// MARK: Button actions
-    }
-    @objc func hideKeyboard() {
-        view.endEditing(true)
+        fetchURL()
     }
     
-    @IBAction func stockButton(_ sender: Any) {
-        screenEnum = .stockScreen
-        stocksButton.setSelectedColor()
-        favoriteButton.setDeselectedColor()
-        tableView.reloadData()
-    }
-    
-    @IBAction func favoriteButton(_ sender: Any) {
-        screenEnum = .favoriteScreen
-        stocksButton.setDeselectedColor()
-        favoriteButton.setSelectedColor()
-        tableView.reloadData()
-        
-    }
+    // MARK: Button actions
+
     @IBAction func accountButton(_ sender: Any) {
         // delete our default login
         UserDefaults.standard.set(false, forKey: "USERDEFAULTLOGIN")
-
+        
         navigationController?.popViewController(animated: true)
         
+    }
+
+    @objc func addToCart(_ sender: UIButton){
+//        let i = sender.tag
+//        let stock = stocks[i]
+//        let stc = PersistenceService.shared.stock(symbol: stock.symbol, longName: stock.longName, price: stock.regularMarketPrice)
+//        PersistenceService.shared.saveContext()
+//        print(stc)
+    }
+    
+    
+    //MARK: JSON Parsing
+    func parse(json: Data) {
+        let decoder = JSONDecoder()
+        
+        if let jsonPetitions = try? decoder.decode(StockQuotes.self, from: json) {
+            stocks = jsonPetitions.quotes
+//            tableView.reloadData()
+        }
+    }
+    func fetchURL(){
+        let endPoint: String = {
+            return "https://mboum.com/api/v1/co/collections/?list=day_gainers&start=1&apikey=demo"
+        }()
+        
+        if let url = URL(string: endPoint) {
+            if let data = try? Data(contentsOf: url) {
+                parse(json: data)
+                return
+            }
+        }
+    }
+    
+    func showError() {
+        let ac = UIAlertController(title: "Loading error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
     }
 }
 
 // MARK: Table View Controller
 extension StockViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if screenEnum == .favoriteScreen {
-            return 0
-        } else {
-            return 10
-        }
+        return stocks.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StockCell", for: indexPath) as! StocksCell
         cell.stockView.layer.cornerRadius = cell.frame.height * 0.2
         cell.stockView.backgroundColor = ((indexPath.row % 2) != 0) ?
             UIColor.white : UIColor.systemGray6
-        
         let backgroundView = UIView()
         backgroundView.backgroundColor = .none
         cell.selectedBackgroundView = backgroundView
+
+        cell.addToCartButton.tag = indexPath.row
+        cell.addToCartButton.addTarget(self, action: #selector(addToCart(_ :)), for: .touchUpInside)
+        let s = stocks[indexPath.row]
+        cell.stockLabel.text = s.symbol
+        cell.stockSublabel.text = s.longName
+        cell.stockCost.text = "\(s.regularMarketPrice)"
         return cell
     }
 }

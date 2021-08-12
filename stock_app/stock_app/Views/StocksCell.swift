@@ -13,10 +13,11 @@ class StocksCell: UITableViewCell {
     @IBOutlet var stockCost: UILabel!
     @IBOutlet var stockLabel: UILabel!
     @IBOutlet var stockSublabel: UILabel!
-    @IBOutlet var startFavoriteButton: UIButton!
+    @IBOutlet var addToCartButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
