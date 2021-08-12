@@ -30,12 +30,12 @@ class StockViewController: UIViewController{
         
     }
 
-    @objc func addToCart(_ sender: UIButton){
-//        let i = sender.tag
-//        let stock = stocks[i]
-//        let stc = PersistenceService.shared.stock(symbol: stock.symbol, longName: stock.longName, price: stock.regularMarketPrice)
-//        PersistenceService.shared.saveContext()
-//        print(stc)
+    @objc func addToCart(sender: UIButton){
+        let i = sender.tag
+        let stock = stocks[i]
+        let stc = PersistenceService.shared.stock(symbol: stock.symbol, longName: stock.longName, price: stock.regularMarketPrice)
+        PersistenceService.shared.saveContext()
+        print(stc)
     }
     
     
@@ -84,7 +84,8 @@ extension StockViewController: UITableViewDataSource {
         cell.selectedBackgroundView = backgroundView
 
         cell.addToCartButton.tag = indexPath.row
-        cell.addToCartButton.addTarget(self, action: #selector(addToCart(_ :)), for: .touchUpInside)
+        cell.addToCartButton.addTarget(self, action: #selector(addToCart), for: .touchUpInside)
+        
         let s = stocks[indexPath.row]
         cell.stockLabel.text = s.symbol
         cell.stockSublabel.text = s.longName

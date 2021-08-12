@@ -59,9 +59,6 @@
                                                             <rect key="frame" x="135" y="10" width="24" height="22"/>
                                                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" image="cart.badge.plus" catalog="system"/>
-                                                            <connections>
-                                                                <action selector="addToCartButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T7k-x6-K0x"/>
-                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemGray6Color"/>
@@ -89,6 +86,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="addToCartButton" destination="ZUa-pV-qUa" id="oIh-bq-bja"/>
                                             <outlet property="stockCost" destination="Fla-Ab-g4K" id="i7d-J1-dMb"/>
                                             <outlet property="stockLabel" destination="sMb-Na-Lde" id="QlW-Pk-Nl3"/>
                                             <outlet property="stockSublabel" destination="JN5-c0-Rku" id="1Qa-nM-KzT"/>
