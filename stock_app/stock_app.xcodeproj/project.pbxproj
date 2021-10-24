@@ -22,14 +22,14 @@
 		21876CA626C01F7B00C94848 /* StockCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 21876CA526C01F7B00C94848 /* StockCharts */; };
 		21876CB226C0256600C94848 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 21876CB126C0256600C94848 /* Charts */; };
 		2188F34326C0134700A5B24B /* DetailStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2188F34226C0134700A5B24B /* DetailStockViewController.swift */; };
+		219F4BE32725BB4E005F3CFA /* Stocks+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F4BE12725BB4E005F3CFA /* Stocks+CoreDataClass.swift */; };
+		219F4BE42725BB4E005F3CFA /* Stocks+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F4BE22725BB4E005F3CFA /* Stocks+CoreDataProperties.swift */; };
 		21C5FC3327244F8900056E53 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C5FC3227244F8900056E53 /* NetworkingService.swift */; };
 		21C5FC352724548000056E53 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C5FC342724548000056E53 /* Enum.swift */; };
 		21C5FC3727245B3700056E53 /* FetchDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C5FC3627245B3700056E53 /* FetchDataService.swift */; };
 		21C5FC39272460FA00056E53 /* StockViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C5FC38272460FA00056E53 /* StockViewControllerExtension.swift */; };
 		21C6F2BE26BD92B200E7A0EE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C6F2BD26BD92B200E7A0EE /* LoginViewController.swift */; };
 		21C6F2C126BD974800E7A0EE /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C6F2C026BD974800E7A0EE /* UIViewExtension.swift */; };
-		21F0656F2725B3B800996781 /* Stocks+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F0656D2725B3B800996781 /* Stocks+CoreDataClass.swift */; };
-		21F065702725B3B800996781 /* Stocks+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F0656E2725B3B800996781 /* Stocks+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,14 +80,14 @@
 		2145828325F3AC4B00C2DC2A /* StocksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksCell.swift; sourceTree = "<group>"; };
 		217CDBD526BEB58000D6F957 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		2188F34226C0134700A5B24B /* DetailStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStockViewController.swift; sourceTree = "<group>"; };
+		219F4BE12725BB4E005F3CFA /* Stocks+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stocks+CoreDataClass.swift"; sourceTree = "<group>"; };
+		219F4BE22725BB4E005F3CFA /* Stocks+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stocks+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		21C5FC3227244F8900056E53 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		21C5FC342724548000056E53 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		21C5FC3627245B3700056E53 /* FetchDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchDataService.swift; sourceTree = "<group>"; };
 		21C5FC38272460FA00056E53 /* StockViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewControllerExtension.swift; sourceTree = "<group>"; };
 		21C6F2BD26BD92B200E7A0EE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		21C6F2C026BD974800E7A0EE /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		21F0656D2725B3B800996781 /* Stocks+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stocks+CoreDataClass.swift"; sourceTree = "<group>"; };
-		21F0656E2725B3B800996781 /* Stocks+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stocks+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,8 +156,8 @@
 		2188F33E26BFFCC000A5B24B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				21F0656E2725B3B800996781 /* Stocks+CoreDataProperties.swift */,
-				21F0656D2725B3B800996781 /* Stocks+CoreDataClass.swift */,
+				219F4BE12725BB4E005F3CFA /* Stocks+CoreDataClass.swift */,
+				219F4BE22725BB4E005F3CFA /* Stocks+CoreDataProperties.swift */,
 				212BC94E26C5771B007976BC /* Stock.swift */,
 				21C5FC342724548000056E53 /* Enum.swift */,
 			);
@@ -356,7 +356,7 @@
 				212DCA0625F2745100B36705 /* AppDelegate.swift in Sources */,
 				2188F34326C0134700A5B24B /* DetailStockViewController.swift in Sources */,
 				212BC94D26C5731F007976BC /* CartViewController.swift in Sources */,
-				21F0656F2725B3B800996781 /* Stocks+CoreDataClass.swift in Sources */,
+				219F4BE32725BB4E005F3CFA /* Stocks+CoreDataClass.swift in Sources */,
 				21C5FC39272460FA00056E53 /* StockViewControllerExtension.swift in Sources */,
 				210B6B5826C11FED00F27E7B /* PersistenceService.swift in Sources */,
 				21C5FC3727245B3700056E53 /* FetchDataService.swift in Sources */,
@@ -365,7 +365,7 @@
 				21C5FC352724548000056E53 /* Enum.swift in Sources */,
 				2145828425F3AC4B00C2DC2A /* StocksCell.swift in Sources */,
 				217CDBD626BEB58000D6F957 /* StringExtension.swift in Sources */,
-				21F065702725B3B800996781 /* Stocks+CoreDataProperties.swift in Sources */,
+				219F4BE42725BB4E005F3CFA /* Stocks+CoreDataProperties.swift in Sources */,
 				21C6F2BE26BD92B200E7A0EE /* LoginViewController.swift in Sources */,
 				210B6B5226C11E0300F27E7B /* stock_app.xcdatamodeld in Sources */,
 				212DCA0825F2745100B36705 /* SceneDelegate.swift in Sources */,

@@ -15,16 +15,21 @@ class CartViewController: UIViewController {
         super.viewDidLoad()
         cartTableView.delegate = self
         cartTableView.dataSource = self
+        stocksCart = PersistenceService.shared.fetchRequestCart()
     }
 
     @IBAction func backButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
+    
+    // -1 stock and -price
+    // +1 stock and +price
+    // if count < 1 delete stock 
 }
 
 extension CartViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return stocksCart.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -36,6 +41,11 @@ extension CartViewController: UITableViewDataSource {
         backgroundView.backgroundColor = .none
         cell.selectedBackgroundView = backgroundView
         
+        let stock = stocksCart[indexPath.row]
+        cell.stockLabel.text = stock.symbol
+        cell.stockSublabel.text = stock.longName
+        cell.stockCost.text = "$\(stock.regularMarketPrice)"
+        cell.countstockCartBtn.text = "\(stock.count)"
         return cell
     }
 }

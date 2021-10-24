@@ -15,4 +15,5 @@ struct Stock: Codable {
     var regularMarketDayLow: Double
     var fiftyTwoWeekHigh: Double
     var fiftyTwoWeekLow: Double
+    var count: Int
 }

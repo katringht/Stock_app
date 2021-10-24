@@ -23,8 +23,6 @@ extension Stocks {
     @NSManaged public var regularMarketDayLow: Double
     @NSManaged public var regularMarketPrice: Double
     @NSManaged public var symbol: String?
-    @NSManaged public var count: Int16
-    @NSManaged public var inCart: Bool
 
 }
 

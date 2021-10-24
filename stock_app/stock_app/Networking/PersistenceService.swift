@@ -22,7 +22,7 @@ class PersistenceService {
         })
         return container
     }()
-
+    
     // MARK: - Core Data Saving support
     func saveContext () {
         let context = persistentContainer.viewContext
@@ -34,5 +34,30 @@ class PersistenceService {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+    
+    func cart(s: String, ln: String, count: Int, rMP: Double, rMPL: Double, rMPH: Double, wL: Double, wH: Double) -> Cart {
+        let cart = Cart(context: persistentContainer.viewContext)
+        cart.longName = ln
+        cart.symbol = s
+        cart.regularMarketPrice = rMP
+        cart.regularMarketDayLow = rMPL
+        cart.regularMarketDayHigh = rMPH
+        cart.fiftyTwoWeekLow = wL
+        cart.fiftyTwoWeekHigh = wH
+        cart.count = 1
+        return cart
+    }
+    
+    func fetchRequestCart() -> [Cart] {
+        let request: NSFetchRequest<Cart> = Cart.fetchRequest()
+        var fetchedMyCart: [Cart] = []
+        
+        do {
+            fetchedMyCart = try persistentContainer.viewContext.fetch(request)
+        } catch {
+            print("Error fetching")
+        }
+        return fetchedMyCart
     }
 }
