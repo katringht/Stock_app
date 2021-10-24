@@ -47,9 +47,15 @@ class LoginViewController: UIViewController {
             //navigate to screen with stocks
             showView()
         } else {
-            loginLabal.text = "Invalid password or email"
-            loginLabal.textColor = .red
+            showError()
+            
         }
+    }
+    
+    func showError() {
+        let ac = UIAlertController(title: "Invalid password or email", message: "Example email: rrr@rr.r Password: at least eight characters.", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
     }
     
     func showView() {

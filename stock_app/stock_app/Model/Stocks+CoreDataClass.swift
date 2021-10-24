@@ -2,7 +2,7 @@
 //  Stocks+CoreDataClass.swift
 //  stock_app
 //
-//  Created by Ekaterina Tarasova on 09.08.2021.
+//  Created by Ekaterina Tarasova on 24.10.2021.
 //
 //
 

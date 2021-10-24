@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Stocks" representedClassName="Stocks" syncable="YES">
-        <attribute name="fiftyTwoWeekHigh" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="fiftyTwoWeekLow" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="fiftyTwoWeekHigh" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="fiftyTwoWeekLow" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="inCart" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="longName" attributeType="String"/>
-        <attribute name="regularMarketDayHigh" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="regularMarketDayLow" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="regularMarketPrice" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="regularMarketDayHigh" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="regularMarketDayLow" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="regularMarketPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="symbol" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Stocks" positionX="-63" positionY="-18" width="128" height="134"/>
+        <element name="Stocks" positionX="-63" positionY="-18" width="128" height="164"/>
     </elements>
 </model>

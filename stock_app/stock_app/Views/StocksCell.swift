@@ -15,6 +15,9 @@ class StocksCell: UITableViewCell {
     @IBOutlet var stockSublabel: UILabel!
     @IBOutlet var addToCartButton: UIButton!
     
+    @IBOutlet weak var minusCartBtn: UIButton!
+    @IBOutlet weak var plusCartBtn: UIButton!
+    @IBOutlet weak var countstockCartBtn: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         

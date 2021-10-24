@@ -12,84 +12,73 @@ class StockViewController: UIViewController{
     @IBOutlet var tableView: UITableView!
     @IBOutlet var accountButton: UIButton!
     var stocks: [Stock] = []
+    let fetch = FetchDataService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        fetchURL()
+        updateMyView()
+    }
+    
+    func updateMyView() {
+        fetch.updateView(self)
+        fetch.fetchedResultController.delegate = self
+        tableView.reloadData()
     }
     
     // MARK: Button actions
 
     @IBAction func accountButton(_ sender: Any) {
-        // delete our default login
-        UserDefaults.standard.set(false, forKey: "USERDEFAULTLOGIN")
-        
-        navigationController?.popViewController(animated: true)
-        
+        let ac = UIAlertController(title: "Do you want to exit?", message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "No", style: .cancel))
+        ac.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { _ in
+            // delete our default login
+            UserDefaults.standard.set(false, forKey: "USERDEFAULTLOGIN")
+            
+            self.navigationController?.popViewController(animated: true)
+        }))
+        present(ac, animated: true)
     }
 
     @objc func addToCart(sender: UIButton){
         let i = sender.tag
-        let stock = stocks[i]
-        let stc = PersistenceService.shared.stock(symbol: stock.symbol, longName: stock.longName, price: stock.regularMarketPrice)
-        PersistenceService.shared.saveContext()
-        print(stc)
-    }
-    
-    
-    //MARK: JSON Parsing
-    func parse(json: Data) {
-        let decoder = JSONDecoder()
+        let stock = fetch.fetchedResultController.fetchedObjects?[i] as? Stocks
+        // change inCart to true count = 1
         
-        if let jsonPetitions = try? decoder.decode(StockQuotes.self, from: json) {
-            stocks = jsonPetitions.quotes
-//            tableView.reloadData()
-        }
     }
-    func fetchURL(){
-        let endPoint: String = {
-            return "https://mboum.com/api/v1/co/collections/?list=day_gainers&start=1&apikey=demo"
-        }()
-        
-        if let url = URL(string: endPoint) {
-            if let data = try? Data(contentsOf: url) {
-                parse(json: data)
-                return
-            }
-        }
-    }
-    
-    func showError() {
-        let ac = UIAlertController(title: "Loading error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
-    }
+
 }
 
 // MARK: Table View Controller
 extension StockViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stocks.count
+        if let count = fetch.fetchedResultController.sections?[0].numberOfObjects {
+            return count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StockCell", for: indexPath) as! StocksCell
         cell.stockView.layer.cornerRadius = cell.frame.height * 0.2
         cell.stockView.backgroundColor = ((indexPath.row % 2) != 0) ?
-            UIColor.white : UIColor.systemGray6
+        UIColor.white : UIColor.systemGray6
         let backgroundView = UIView()
         backgroundView.backgroundColor = .none
         cell.selectedBackgroundView = backgroundView
-
+        
         cell.addToCartButton.tag = indexPath.row
         cell.addToCartButton.addTarget(self, action: #selector(addToCart), for: .touchUpInside)
         
-        let s = stocks[indexPath.row]
-        cell.stockLabel.text = s.symbol
-        cell.stockSublabel.text = s.longName
-        cell.stockCost.text = "\(s.regularMarketPrice)"
+        if let s = fetch.fetchedResultController.object(at: indexPath) as? Stocks {
+            DispatchQueue.main.async {
+                cell.stockLabel.text = s.symbol
+                cell.stockSublabel.text = s.longName
+                cell.stockCost.text = "\(s.regularMarketPrice)"
+            }
+        }
+        
         return cell
     }
 }
@@ -104,6 +93,14 @@ extension StockViewController: UITableViewDelegate{
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "DetailStockViewController") as! DetailStockViewController
+        if let stock = fetch.fetchedResultController.object(at: indexPath) as? Stocks {
+            secondVC.regularPriceLow = stock.regularMarketDayLow
+            secondVC.regularPriceHigh = stock.regularMarketDayHigh
+            secondVC.weekRangePriceLow = stock.fiftyTwoWeekLow
+            secondVC.weekRangePriceHigh = stock.fiftyTwoWeekHigh
+            secondVC.symbol = stock.symbol!
+            secondVC.longname = stock.longName!
+        }
         show(secondVC, sender: self)
     }
 }

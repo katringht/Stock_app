@@ -22,27 +22,6 @@ class PersistenceService {
         })
         return container
     }()
-    
-    func stock(symbol: String, longName: String, price: Double) -> Stocks{
-        let stc = Stocks(context: persistentContainer.viewContext)
-        stc.symbol = symbol
-        stc.longName = longName
-        stc.regularMarketPrice = price
-        return stc
-    }
-    //fetching data
-        
-    func fetchRequest() -> [Stocks] {
-        let request: NSFetchRequest<Stocks> = Stocks.fetchRequest()
-        var fetchedMyCategiries: [Stocks] = []
-        
-        do {
-            fetchedMyCategiries = try persistentContainer.viewContext.fetch(request)
-        } catch {
-            print("Error fetching")
-        }
-        return fetchedMyCategiries
-    }
 
     // MARK: - Core Data Saving support
     func saveContext () {

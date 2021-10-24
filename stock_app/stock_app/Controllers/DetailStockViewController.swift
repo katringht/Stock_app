@@ -14,11 +14,20 @@ class DetailStockViewController: UIViewController, ChartViewDelegate {
     @IBOutlet var symbolStock: UILabel!
     @IBOutlet var longNameStock: UILabel!
     
+    var regularPriceLow = 0.0
+    var regularPriceHigh = 0.0
+    var weekRangePriceLow = 0.0
+    var weekRangePriceHigh = 0.0
+    var symbol: String?
+    var longname: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         chartView.rightAxis.enabled = false
         chartView.xAxis.enabled = false
         setData()
+        symbolStock.text = symbol
+        longNameStock.text = longname
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +45,10 @@ class DetailStockViewController: UIViewController, ChartViewDelegate {
     }
     
     func setData() {
+        let entryValue: [ChartDataEntry] = [ ChartDataEntry(x: 0, y: regularPriceLow), ChartDataEntry(x: 1 , y: regularPriceHigh)]
+        
+        let entryValue2: [ChartDataEntry] = [ChartDataEntry(x: 0, y: weekRangePriceLow), ChartDataEntry(x: 1 , y: weekRangePriceHigh)]
+        
         let set = LineChartDataSet(entries: entryValue, label: "Regular Market Day Range")
         set.drawCirclesEnabled = false
         set.mode = .cubicBezier
@@ -59,8 +72,4 @@ class DetailStockViewController: UIViewController, ChartViewDelegate {
         data.append(set2)
         chartView.data = data
     }
-    
-    let entryValue: [ChartDataEntry] = [ ChartDataEntry(x: 0, y: 15.5), ChartDataEntry(x: 1 , y: 17.4)]
-    
-    let entryValue2: [ChartDataEntry] = [ChartDataEntry(x: 0, y: 4.3), ChartDataEntry(x: 1 , y: 38.5)]
 }

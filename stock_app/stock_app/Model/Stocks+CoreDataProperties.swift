@@ -2,7 +2,7 @@
 //  Stocks+CoreDataProperties.swift
 //  stock_app
 //
-//  Created by Ekaterina Tarasova on 09.08.2021.
+//  Created by Ekaterina Tarasova on 24.10.2021.
 //
 //
 
@@ -16,13 +16,15 @@ extension Stocks {
         return NSFetchRequest<Stocks>(entityName: "Stocks")
     }
 
-    @NSManaged public var symbol: String?
+    @NSManaged public var fiftyTwoWeekHigh: Double
+    @NSManaged public var fiftyTwoWeekLow: Double
     @NSManaged public var longName: String?
-    @NSManaged public var regularMarketPrice: Double
     @NSManaged public var regularMarketDayHigh: Double
     @NSManaged public var regularMarketDayLow: Double
-    @NSManaged public var fiftyTwoWeekLow: Double
-    @NSManaged public var fiftyTwoWeekHigh: Double
+    @NSManaged public var regularMarketPrice: Double
+    @NSManaged public var symbol: String?
+    @NSManaged public var count: Int16
+    @NSManaged public var inCart: Bool
 
 }
 
