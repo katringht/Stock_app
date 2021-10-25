@@ -10,12 +10,13 @@ import UIKit
 class CartViewController: UIViewController {
 
     @IBOutlet weak var cartTableView: UITableView!
+    var cart = StockViewController.stocksCart
     
     override func viewDidLoad() {
         super.viewDidLoad()
         cartTableView.delegate = self
         cartTableView.dataSource = self
-        stocksCart = PersistenceService.shared.fetchRequestCart()
+        cart = PersistenceService.shared.fetchRequestCart()
     }
     
 //MARK: BUTTONS
@@ -49,7 +50,7 @@ class CartViewController: UIViewController {
             context.delete(stock)
             do {
                 try context.save()
-                stocksCart.remove(at: i)
+                cart.remove(at: i)
             }
             catch let error{
                 print("DELETING ERROR: \(error)")
@@ -73,7 +74,7 @@ class CartViewController: UIViewController {
 
 extension CartViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stocksCart.count
+        return cart.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -90,7 +91,7 @@ extension CartViewController: UITableViewDataSource {
         cell.plusCartBtn.addTarget(self, action: #selector(increaseNumberOfStock), for: .touchUpInside)
         cell.minusCartBtn.addTarget(self, action: #selector(decreaseNumberOfStocks), for: .touchUpInside)
         
-        let stock = stocksCart[indexPath.row]
+        let stock = cart[indexPath.row]
         cell.stockLabel.text = stock.symbol
         cell.stockSublabel.text = stock.longName
         cell.stockCost.text = "$\(roundDouble(stock.myPrice, toDecimalPlaces: 2))"

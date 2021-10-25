@@ -8,13 +8,11 @@
 import UIKit
 import CoreData
 
-var stocksCart: [Cart] = []
-
 class StockViewController: UIViewController{
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var accountButton: UIButton!
-    
+    static var stocksCart: [Cart] = []
     let fetch = FetchDataService()
     
     override func viewDidLoad() {
@@ -56,7 +54,7 @@ class StockViewController: UIViewController{
             let count = try context.count(for: request)
             if(count == 0){
                 let s = PersistenceService.shared.cart(s: (stock?.symbol)!, ln: (stock?.longName)!, count: 1, myPice: stock!.regularMarketPrice, rMP: stock!.regularMarketPrice, rMPL: stock!.regularMarketDayLow, rMPH: stock!.regularMarketDayHigh, wL: stock!.fiftyTwoWeekLow, wH: stock!.fiftyTwoWeekHigh)
-                stocksCart.append(s)
+                StockViewController.stocksCart.append(s)
                 PersistenceService.shared.saveContext()
             }
         } catch let error as NSError {
