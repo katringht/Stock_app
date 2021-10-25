@@ -36,7 +36,7 @@ class PersistenceService {
         }
     }
     
-    func cart(s: String, ln: String, count: Int, rMP: Double, rMPL: Double, rMPH: Double, wL: Double, wH: Double) -> Cart {
+    func cart(s: String, ln: String, count: Int, myPice: Double ,rMP: Double, rMPL: Double, rMPH: Double, wL: Double, wH: Double) -> Cart {
         let cart = Cart(context: persistentContainer.viewContext)
         cart.longName = ln
         cart.symbol = s
@@ -45,7 +45,8 @@ class PersistenceService {
         cart.regularMarketDayHigh = rMPH
         cart.fiftyTwoWeekLow = wL
         cart.fiftyTwoWeekHigh = wH
-        cart.count = 1
+        cart.myPrice = myPice
+        cart.stockscount = Int32(count)
         return cart
     }
     

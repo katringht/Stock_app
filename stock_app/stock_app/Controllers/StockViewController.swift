@@ -47,12 +47,22 @@ class StockViewController: UIViewController{
     @objc func addToCart(sender: UIButton){
         let i = sender.tag
         let stock = fetch.fetchedResultController.fetchedObjects?[i] as? Stocks
-        // if stock exists -> count +1
-        let s = PersistenceService.shared.cart(s: (stock?.symbol)!, ln: (stock?.longName)!, count: 1, rMP: stock!.regularMarketPrice, rMPL: stock!.regularMarketDayLow, rMPH: stock!.regularMarketDayHigh, wL: stock!.fiftyTwoWeekLow, wH: stock!.fiftyTwoWeekHigh)
-        stocksCart.append(s)
-        PersistenceService.shared.saveContext()
+        // checking existing stocks
+        let request: NSFetchRequest<Cart> = Cart.fetchRequest()
+        let str: String = (stock?.symbol)!
+        request.predicate = NSPredicate(format: "symbol = %@", str)
+        do{
+            let context = PersistenceService.shared.persistentContainer.viewContext
+            let count = try context.count(for: request)
+            if(count == 0){
+                let s = PersistenceService.shared.cart(s: (stock?.symbol)!, ln: (stock?.longName)!, count: 1, myPice: stock!.regularMarketPrice, rMP: stock!.regularMarketPrice, rMPL: stock!.regularMarketDayLow, rMPH: stock!.regularMarketDayHigh, wL: stock!.fiftyTwoWeekLow, wH: stock!.fiftyTwoWeekHigh)
+                stocksCart.append(s)
+                PersistenceService.shared.saveContext()
+            }
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
     }
-
 }
 
 // MARK: Table View Controller
@@ -90,7 +100,7 @@ extension StockViewController: UITableViewDataSource {
 
 extension StockViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 110
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

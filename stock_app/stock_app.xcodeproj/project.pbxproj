@@ -30,6 +30,7 @@
 		21C5FC39272460FA00056E53 /* StockViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C5FC38272460FA00056E53 /* StockViewControllerExtension.swift */; };
 		21C6F2BE26BD92B200E7A0EE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C6F2BD26BD92B200E7A0EE /* LoginViewController.swift */; };
 		21C6F2C126BD974800E7A0EE /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C6F2C026BD974800E7A0EE /* UIViewExtension.swift */; };
+		21F4A9722726E043009E433F /* RoundDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F4A9712726E043009E433F /* RoundDouble.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		21C5FC38272460FA00056E53 /* StockViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewControllerExtension.swift; sourceTree = "<group>"; };
 		21C6F2BD26BD92B200E7A0EE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		21C6F2C026BD974800E7A0EE /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		21F4A9712726E043009E433F /* RoundDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundDouble.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +210,7 @@
 				21C6F2C026BD974800E7A0EE /* UIViewExtension.swift */,
 				217CDBD526BEB58000D6F957 /* StringExtension.swift */,
 				21C5FC38272460FA00056E53 /* StockViewControllerExtension.swift */,
+				21F4A9712726E043009E433F /* RoundDouble.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				219F4BE32725BB4E005F3CFA /* Stocks+CoreDataClass.swift in Sources */,
 				21C5FC39272460FA00056E53 /* StockViewControllerExtension.swift in Sources */,
 				210B6B5826C11FED00F27E7B /* PersistenceService.swift in Sources */,
+				21F4A9722726E043009E433F /* RoundDouble.swift in Sources */,
 				21C5FC3727245B3700056E53 /* FetchDataService.swift in Sources */,
 				21C6F2C126BD974800E7A0EE /* UIViewExtension.swift in Sources */,
 				212BC94F26C5771B007976BC /* Stock.swift in Sources */,
